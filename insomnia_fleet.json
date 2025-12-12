@@ -1,0 +1,260 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2025-12-08T14:00:00.000Z",
+  "__export_source": "insomnia.desktop.app:v2023.5.0",
+  "resources": [
+    {
+      "_id": "req_register_admin",
+      "parentId": "fld_auth",
+      "modified": 1702041000000,
+      "created": 1702041000000,
+      "url": "{{ base_url }}/api/auth/register",
+      "name": "1. Register Admin",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"name\": \"Super Admin\",\n\t\"email\": \"admin@fleet.com\",\n\t\"password\": \"password123\",\n\t\"role\": \"admin\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1702041000000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_login_admin",
+      "parentId": "fld_auth",
+      "modified": 1702041100000,
+      "created": 1702041100000,
+      "url": "{{ base_url }}/api/auth/login",
+      "name": "2. Login Admin",
+      "description": "Copy the 'token' from the response and paste it into your Environment variables!",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"email\": \"admin@fleet.com\",\n\t\"password\": \"password123\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1702041100000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_create_truck",
+      "parentId": "fld_trucks",
+      "modified": 1702042000000,
+      "created": 1702042000000,
+      "url": "{{ base_url }}/api/trucks",
+      "name": "Create Truck (Admin)",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"plate\": \"AA-123-BB\",\n\t\"model\": \"Volvo FH16\",\n\t\"currentMileage\": 12500,\n\t\"status\": \"available\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1702042000000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_get_trucks",
+      "parentId": "fld_trucks",
+      "modified": 1702042100000,
+      "created": 1702042100000,
+      "url": "{{ base_url }}/api/trucks",
+      "name": "Get All Trucks",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1702042100000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_create_trip",
+      "parentId": "fld_trips",
+      "modified": 1702043000000,
+      "created": 1702043000000,
+      "url": "{{ base_url }}/api/trips",
+      "name": "Create Trip (Assign)",
+      "description": "Replace driverId and truckId with real IDs from previous requests",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"driverId\": \"REPLACE_WITH_DRIVER_ID\",\n\t\"truckId\": \"REPLACE_WITH_TRUCK_ID\",\n\t\"startLocation\": \"Paris\",\n\t\"endLocation\": \"Lyon\",\n\t\"description\": \"Electronics delivery\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1702043000000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_get_trips",
+      "parentId": "fld_trips",
+      "modified": 1702043100000,
+      "created": 1702043100000,
+      "url": "{{ base_url }}/api/trips",
+      "name": "Get All Trips",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1702043100000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "env_main",
+      "parentId": "wrk_1",
+      "modified": 1702040000000,
+      "created": 1702040000000,
+      "name": "Dev Environment",
+      "data": {
+        "base_url": "http://localhost:3045",
+        "token": "PASTE_YOUR_JWT_HERE"
+      },
+      "dataPropertyOrder": {
+        "&": ["base_url", "token"]
+      },
+      "color": "#7d69cb",
+      "isPrivate": false,
+      "metaSortKey": 1702040000000,
+      "_type": "environment"
+    },
+    {
+      "_id": "wrk_1",
+      "parentId": null,
+      "modified": 1702040000000,
+      "created": 1702040000000,
+      "name": "Fleet Management API",
+      "description": "Fil Rouge Project",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "fld_auth",
+      "parentId": "wrk_1",
+      "modified": 1702041000000,
+      "created": 1702041000000,
+      "name": "Auth",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1702041000000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_trucks",
+      "parentId": "wrk_1",
+      "modified": 1702042000000,
+      "created": 1702042000000,
+      "name": "Trucks",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1702042000000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_trips",
+      "parentId": "wrk_1",
+      "modified": 1702043000000,
+      "created": 1702043000000,
+      "name": "Trips",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1702043000000,
+      "_type": "request_group"
+    }
+  ]
+}
