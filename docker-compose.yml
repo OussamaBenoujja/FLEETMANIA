@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo:latest
+    container_name: fleetmania_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - fleet-network
+
+  backend:
+    build: ./backend
+    container_name: fleetmania_backend
+    ports:
+      - "3045:3045"
+    environment:
+      - PORT=3045
+      - MONGO_URI=mongodb://mongo:27017/fleetmania_db
+      - JWT_SECRET=supersecretkey123
+      - NODE_ENV=production
+    depends_on:
+      - mongo
+    networks:
+      - fleet-network
+
+  frontend:
+    build: ./frontend/fleetmania-front
+    container_name: fleetmania_frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    networks:
+      - fleet-network
+
+networks:
+  fleet-network:
+    driver: bridge
+
+volumes:
+  mongo_data:
