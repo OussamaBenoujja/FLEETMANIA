@@ -1,0 +1,15 @@
+{
+  "name": "fleetmania-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend/fleetmania-front"
+  ],
+  "scripts": {
+    "install:all": "npm install",
+    "dev:backend": "npm run dev --workspace=backend",
+    "dev:frontend": "npm run dev --workspace=frontend/fleetmania-front",
+    "test": "npm test --workspace=backend"
+  }
+}
